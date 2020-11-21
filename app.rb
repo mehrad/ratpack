@@ -11,7 +11,8 @@ module Name
     #configure
     configure do
       set :root, File.dirname(__FILE__)
-      set :public_folder, 'public'
+      set :public_folder, Proc.new { File.join(root, "public") }
+      puts public_folder
     end
 
     #database
