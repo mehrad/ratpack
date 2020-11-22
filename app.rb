@@ -21,7 +21,7 @@ module Name
     set :database_file, 'config/database.yml'
     user = ENV['DATABASE_USER'] || 'admin'
     password = ENV['DATABASE_PASSWORD'] || 'testpass1'
-    Sequel.connect(ENV['DATABASE_URL'] || 'postgres://localhost/ratpack_dev', user: user, password: password)
+    # Sequel.connect(ENV['DATABASE_URL'] || 'postgres://localhost/ratpack_dev', user: user, password: password)
 
     configure :production do
       db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/ratpack')
