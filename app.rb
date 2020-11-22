@@ -1,4 +1,6 @@
 require 'bundler'
+require 'sequel'
+
 Bundler.require
 
 Dir.glob('./lib/*.rb') do |model|
@@ -16,9 +18,11 @@ module Name
     end
 
     #database
-    set :database, "sqlite3:///database.db"
+    set :database_file, 'config/database.yml'
+    user = ENV['DATABASE_USER'] || 'admin'
+    password = ENV['DATABASE_PASSWORD'] || 'testpass1'
+    Sequel.connect(ENV['DATABASE_URL'] || 'postgres://localhost/ratpack_dev', user: user, password: password)
 
-    #filters
 
     #routes
     get '/' do
